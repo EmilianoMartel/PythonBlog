@@ -8,3 +8,6 @@ class Products(models.Model):
     is_active = models.BooleanField(default=True)
     stock = models.IntegerField()
     seller = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
