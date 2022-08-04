@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>
+        {% block titulo %}
+            titulo por defecto
+        {% endblock %}
+    </title>
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="https://placeholderlogo.com/img/placeholder-logo-1.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            e-Commerce
+        </a>
+        <!-- Navbar content -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="/products/product-list/">Productos <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block contenido_que_cambia %}
+        bloque por defecto
+    {% endblock %}
+
+  </body>
+</html>
