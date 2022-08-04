@@ -8,5 +8,5 @@ class Producto(models.Model):
     modified_date = models.DateTimeField( auto_now=True)
     description = models.TextField(null=True)
     active =  models.BooleanField(default=True)
-    image_url = models.URLField(default="https://nayemdevs.com/wp-content/uploads/2020/03/default-product-image.png")
+    image_url = models.URLField(default="https://image.shutterstock.com/image-vector/photo-album-picture-collection-line-260nw-256926565.jpg")
     
