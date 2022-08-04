@@ -1,13 +1,26 @@
+from pyexpat import model
 from django.db import models
 
 # Create your models here.
-class Products(models.Model):
+class Producto(models.Model):
+    #id = models.IntegerField(primary_key=True,auto_created=True)
     name = models.CharField(max_length=50)
     price = models.FloatField()
-    description = models.CharField(max_length=200, null=True, blank=True)
-    is_active = models.BooleanField(default=True)
-    stock = models.IntegerField()
-    seller = models.CharField(max_length=40)
+    created_date = models.DateField(auto_now_add=True)
+    modified_date = models.DateTimeField( auto_now=True)
+    description = models.TextField(null=True)
+    active =  models.BooleanField(default=True)
+    image_url = models.URLField(default="https://image.shutterstock.com/image-vector/photo-album-picture-collection-line-260nw-256926565.jpg")
+    
 
-    def __str__(self):
-        return self.name
+class User(models.Model): #La idea es agregarle usuarios y que puedan marcar productos como favoritos dentro del listado de productos y en una URL específica puedan ver esa lista
+    #id = models.IntegerField(primary_key=True,auto_created=True)
+    name = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    favs = models.ManyToManyField(Producto) #favoritos
+
+"""    
+class Favorito(models.Model):
+    user_id = IntegerField
+    producto_id = IntegerField
+"""
