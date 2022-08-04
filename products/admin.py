@@ -1,5 +1,5 @@
 from django.contrib import admin
-from products.models import Producto
+from products.models import Producto, User
 
 # Register your models here.
 @admin.register(Producto)
@@ -12,4 +12,10 @@ class Producto_admin(admin.ModelAdmin):
     ,'description'
     ,'active'
     ,'image_url'
+    ]
+
+@admin.register(User)
+class User_admin(admin.ModelAdmin):
+    list_display = [
+    'name'
     ]
