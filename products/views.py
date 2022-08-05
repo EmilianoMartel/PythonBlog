@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from products.models import Producto
+from products.models import Film
 
 # Create your views here.
 def list_products(request):
-    products = Producto.objects.all()
+    Films = Film.objects.all()
     context = {
-        'products':products
+        'Film':Films
     }
     return render(request, 'products/product_list_cards.html', context=context)
