@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from products.models import Producto, Contenido
+from products.models import Producto, Contenido, Reseña
 
 # Create your views here.
 def list_products(request):
@@ -15,3 +15,10 @@ def list_content(request):
         'contents':content
     }
     return render(request, 'products/content_list_cards.html', context=context)
+
+def list_review(request):
+    review = Reseña.objects.all()
+    context = {
+        "reviews":review
+    }
+    return render(request, "products/review_list_card.html", context=context)

@@ -35,6 +35,14 @@ class Streaming: #Lo doy de alta como clase para poder filtrar contenido en base
     image_url = models.URLField(default="https://image.shutterstock.com/image-vector/photo-album-picture-collection-line-260nw-256926565.jpg")
     contains = models.ManyToManyField(Contenido) #favoritos
 
+class Reseña(models.Model):
+    name = models.CharField(max_length=40)
+    description = models.CharField(max_length=200)
+    film = models.ManyToManyField(Contenido)
+    categorias = [('P','Película'), ('S', 'Serie'), ('C', 'Corto')]
+    category = models.CharField(max_length=1,choices=categorias)
+    body = models.TextField(null=True)
+    puntaje = models.FloatField()
 """    
 class Favorito(models.Model):
     user_id = IntegerField
