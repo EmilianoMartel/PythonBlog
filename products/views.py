@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from products.models import Producto, Contenido, Reseña
+from products.forms import Forms_contenido
 
 # Create your views here.
 def list_products(request):
@@ -22,3 +23,21 @@ def list_review(request):
         "reviews":review
     }
     return render(request, "products/review_list_card.html", context=context)
+
+def new_content(request):
+
+    if request.method == "POST":
+        form = Forms_contenido(request.POST)
+
+        if form.is_valid():
+            Contenido.objects.create(
+                name = form.cleaned_data["name"],
+                score = form.cleaned_data["score"],
+                created_date = form.cleaned_data["created_date"],
+                modified_date = form.cleaned_data["modified_date"],
+                description = form.cleaned_data["description"],
+            )
+    elif request.method == "GET":
+        form = Forms_contenido()
+        context = {"form":form}
+        return render (request, "products/new_content.html", context=context)
