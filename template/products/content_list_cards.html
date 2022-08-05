@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Listado de películas, series y más
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+    
+    <div class="row row-cols-1 row-cols-md-5"> <!-- cambiando el ultimo numero cambia la cantidad de columnas -->
+      {% for content in contents %}
+        <div class="col mb-5">
+          
+          <div class="card h-100">
+            <img src= {{product.image_url}} class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{content.name}}</h5> 
+              <p class="card-text"><small class="text-muted">{{content.category}}</small></p>
+              <p class="card-text">Calificación de usuarios: {{content.score}}</p>
+              <p class="card-text">{{content.description}}</p>
+            </div>
+          </div>
+          
+        </div>
+      {% endfor %}  
+      </div>
+    
+
+{% endblock %}
