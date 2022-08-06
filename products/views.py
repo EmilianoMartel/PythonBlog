@@ -41,3 +41,9 @@ def new_content(request):
         form = Forms_contenido()
         context = {"form":form}
         return render (request, "products/new_content.html", context=context)
+
+def search_content(request):
+    search = request.GET['search']
+    products = Contenido.objects.filter(name__icontains=search)
+    context = {'products':products}
+    return render(request, 'products/search_content.html', context=context)
