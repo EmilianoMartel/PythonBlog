@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from products.models import Producto, Contenido, Reseña
 from products.forms import Forms_contenido
 
@@ -28,16 +28,16 @@ def new_content(request):
 
     if request.method == "POST":
         form = Forms_contenido(request.POST)
-
         if form.is_valid():
             Contenido.objects.create(
                 name = form.cleaned_data["name"],
                 score = form.cleaned_data["score"],
-                created_date = form.cleaned_data["created_date"],
-                modified_date = form.cleaned_data["modified_date"],
+                category = form.cleaned_data["category"],
+                image_url = form.cleaned_data["image_url"],
                 description = form.cleaned_data["description"],
             )
-            
+        return redirect(list_content)
+
     elif request.method == "GET":
         form = Forms_contenido()
         context = {"form":form}
