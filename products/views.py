@@ -37,6 +37,7 @@ def new_content(request):
                 modified_date = form.cleaned_data["modified_date"],
                 description = form.cleaned_data["description"],
             )
+            
     elif request.method == "GET":
         form = Forms_contenido()
         context = {"form":form}
