@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>
+        {% block titulo %}
+            titulo por defecto
+        {% endblock %}
+    </title>
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#" >CineFans</a>  
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/products/list-contents/">Listado<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/products/favorites/">Favoritos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Link</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Peliculas,Directores,Etc" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+      </div>
+    </nav>
+    
+    <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">cinefans</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="/products/list-contents/">Listado <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/products/favorites/">Favoritos</a>
+          <a class="nav-link disabled">Link</a>
+        </div>
+      </div>
+    </nav>
+
+    
+<!-- Lo de abajo no funciona bien, es lo mismo con logo antes de la navbar
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAYFBMVEX///9JSUl3d3eJiYmqqqp6enrOzs6enp5VVVXn5+eBgYG2trZtbW1SUlKSkpKGhobz8/NhYWHCwsLb29v5+fmYmJizs7PJycnV1dWkpKTr6+vAwMDi4uJmZmZxcXFcXFyuI90gAAAE5klEQVR4nO2ca4OiIBhGBe9pZqldZprt///LFZAUxDXtosw+58NuJuF7RHiVoRwHAAAAAAAAAAAAAAAAAAAAAAAAAOshzjb50jG8gDLxKaXB0mE8TeFSTrh0IM9RelRi9eV13tEOp6XDmUt+oSrV0hHN47ShOv7X0kFN56vqaTAOS8c1lW/f6EFptnRkk4izAQ1GvHR0DyNS4CD+0vE9ikyBZtItXTrAx+ikQAN/boTYIaKmQJ0fQuwQ6aVAtTkiYomIIQV22BNiicg/myPdEmtEMnMy59wIsUjEDQcSSNscNevPI5nrZqYcsjmSLpul4xylFnHd/uXllYGNIvrl5RaOY6eIW3Vyop+UjrUincurEne61oq4oejk8inqGtkq4lZ1jr+00yb5zlYRN6vOyr5DZKmI62k7c9dSkWNv96m5TdktENo0FJGkv79pFPfzkU3EHRFpGuU3iPBG+RUidXK8/RIRJ1//XPZjIiqrnAyeIfIdvTmmWUwWYV3/7VHNYKrImQ3G7w9rOtNEypCnx08ENpVJIteU/AqRo5xX+Uxo03hc5Mu/39R/KrgpKCL9u9+WU+eJ8WPRTUARcQf/MFVm3QffTwb4KIrHxh/4u2exJ3aJUFqZ1jpcCLFOhG7OepH4D7FRhE2XKiWSre5hiwh1r+1+ZVJozSJ51Reh/rfcHdwMHitdnpLseiKyz5eVQSNa7UPW1SDC+3zxY/Cgq3ysarj0Reo+7xk0iD6HtzICgwjtj1Zk3xub10aePSKys2Fl4HE3JrJ9cG5iaYoRkfQ6Xsc6KMN/iVTleA2rQV1d0xVZb/Iwoyyw6YisOnmYOfkGkcvSUc2hXdooRW6rTx5myqMqYkXyMHPetCK2JA8zeShFfqxJHgMcfC6S2ZQ8zFxdurUteZgpPRtX9wMAAAAAAACWRE5whnGz0dkn1i40G3GYEuJ7eedDhH/j5V5GvojD+oM+r1CtUR4ri42V1Ox3s3+moK0u6YmI90XVSbOSISrGRAJZMhgQEccyitTM/ZmCtgYSayJxe1Anvq/ISEdE2pJRPChC4kERMrNN2Ec9L4z4uVBFmm9S8D86sYVXUciLHeSHGElPxGtLegaR+7H6lTS7Zq7iltcDP9eqSB3SnjRf/ErFqQraGPQa5Au/LembS4pjGXcdmiafLyL+V0WyOpTaZK8VGwhPvlAqNJcc3fVikfrcsvGHaMXsE6kvWI/1jcKxWyRnFzvruodOMa1/v0Nk/2oR1icL9o/n6GfqbSJsxH9u1GKnP1LrZo3hFE3NfRE+cCq3AzNEtEpytvBu5nx+U3nGL35dJJWdwiDCCbobM0QMlcz9CY9OEIl6WJ8rpOKtj4nM/rpyG4Oeo/a8d7DxV7/VWHeLZHn/sJ7oKcFoZ+fX+gwRrRK+au2JPsLG1N5NdyAMPKLcM715+GVHe27U6m8k4poKRGt3YnhnQmSD55N5pLfRWX7lf0xEu4RfItJZZRlZLZK2IiS3WaR+mQU1rGWCTz2PvFJEPLQF7N6ED4Ri2Hr8CbFT0lNqlBt8VzZQyQtFBF4z+oqHNu+pZ/amRiV1mp7Z3yPCGoJP/TTXSCKjmz6LYhAxzqKwOqKXi2T394kY2uNs7ryWLjI0r8XeZD3Mut+wAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwP/GX47FL0T/5z7HAAAAAElFTkSuQmCC" height="80" class="d-inline-block align-top" alt="">
+            e-Commerce
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="/products/product-list/">Productos <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/products/favorites/">Favoritos <span class="sr-only"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+  -->
+    {% block contenido_que_cambia %}
+        bloque por defecto
+    {% endblock %}
+
+  </body>
+</html>

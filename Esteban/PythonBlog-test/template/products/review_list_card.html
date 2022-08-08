@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Productos
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+  <div class="row row-cols-1 row-cols-md-5"> <!-- cambiando el ultimo numero cambia la cantidad de columnas -->
+    {% for product in products %}
+      <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{review.name}}</h5>
+            <p class="card-text">{{review.description}}</p>
+            <a href="#" class="btn btn-primary">Ver mas</a>
+          </div>
+        </div>
+          
+      </div>
+    {% endfor %}  
+  </div>
+    
+
+{% endblock %}
