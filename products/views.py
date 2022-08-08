@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from products.models import Producto, Contenido, Reseña
-from products.forms import Forms_contenido
+from products.forms import Forms_contenido, Forms_reseña
 
 # Create your views here.
 def list_products(request):
@@ -48,3 +48,24 @@ def search_content(request):
     products = Contenido.objects.filter(name__icontains=search)
     context = {'products':products}
     return render(request, 'products/search_content.html', context=context)
+
+def new_review(request):
+
+    if request.method == "POST":
+        form = Forms_reseña(request.POST)
+
+        if form.is_valid():
+            Reseña.objects.create(
+                name = form.cleaned_data["name"],
+                description = form.cleaned_data["description"],
+                film = form.cleaned_data["film"],
+                category = form.cleaned_data["category"],
+                body = form.cleaned_data["body"],
+                puntaje = form.cleaned_data["puntaje"],
+            )
+            return redirect(list_review)
+            
+    elif request.method == "GET":
+        form = Forms_reseña()
+        context = {"form":form}
+        return render (request, "products/new_review.html", context=context)   

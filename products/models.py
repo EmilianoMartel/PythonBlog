@@ -38,7 +38,8 @@ class Streaming: #Lo doy de alta como clase para poder filtrar contenido en base
 class Reseña(models.Model):
     name = models.CharField(max_length=40)
     description = models.CharField(max_length=200)
-    film = models.ManyToManyField(Contenido)
+    #film = models.ManyToManyField(Contenido)
+    film = models.CharField(max_length = 40)
     categorias = [('P','Película'), ('S', 'Serie'), ('C', 'Corto')]
     category = models.CharField(max_length=1,choices=categorias)
     body = models.TextField(null=True)
