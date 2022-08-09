@@ -6,7 +6,7 @@ urlpatterns = [
     path('list-products/', list_products, name='list_products'),
     path('list-content/', list_content, name='list_content'),
     path('list-review/', list_review, name='list_review'),
-    path('new_content/', new_content, name='new_content'),
-    path('search_content/', search_content, name='search_content'),
-    path('new_review/', new_review, name='new_review')
-    ]
+    path('new-content/', new_content, name='new_content'),
+    path('search-content/', search_content, name='search_content'),
+    path('new-review/', new_review, name='new_review'),
+]

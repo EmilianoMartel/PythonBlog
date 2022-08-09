@@ -1,5 +1,7 @@
+from turtle import textinput
 from django import forms
 from products.models import Producto, Contenido, Reseña
+
 
 class Forms_contenido(forms.Form):
     name = forms.CharField(max_length=50)
@@ -12,12 +14,10 @@ class Forms_contenido(forms.Form):
     description = forms.CharField()
     image_url = forms.URLField()
 
-class Forms_reseña(forms.Form):
-    name = forms.CharField(max_length=50)
-    description = forms.CharField()
-    #film = forms.ChoiceField(choices = Contenido.objects.name)
-    film = forms.CharField()
-    categorias = [('P','Película'), ('S', 'Serie'), ('C', 'Corto')]
-    category = forms.ChoiceField(choices=categorias) 
-    body = forms.CharField()
-    puntaje = forms.CharField()
+
+class Forms_review(forms.Form):
+    name = forms.CharField(max_length=40)
+    film = forms.ModelChoiceField(queryset=Contenido.objects.all())
+    puntaje = forms.FloatField() 
+    body = forms.CharField(widget=forms.Textarea)
+
