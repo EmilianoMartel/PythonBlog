@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from products.models import Producto, Contenido, Reseña
-from products.forms import Forms_contenido
+from products.forms import Forms_contenido, Forms_review
 
 # Create your views here.
 def list_products(request):
@@ -18,14 +18,13 @@ def list_content(request):
     return render(request, 'products/content_list_cards.html', context=context)
 
 def list_review(request):
-    review = Reseña.objects.all()
+    reviews = Reseña.objects.all()
     context = {
-        "reviews":review
+        "reviews":reviews
     }
     return render(request, "products/review_list_card.html", context=context)
 
 def new_content(request):
-
     if request.method == "POST":
         form = Forms_contenido(request.POST)
         if form.is_valid():
@@ -39,8 +38,8 @@ def new_content(request):
         return redirect(list_content)
 
     elif request.method == "GET":
-        form = Forms_contenido()
-        context = {"form":form}
+        forms = Forms_contenido()
+        context = {"forms":forms}
         return render (request, "products/new_content.html", context=context)
 
 def search_content(request):
@@ -48,3 +47,20 @@ def search_content(request):
     products = Contenido.objects.filter(name__icontains=search)
     context = {'products':products}
     return render(request, 'products/search_content.html', context=context)
+
+def new_review(request):
+    if request.method == "POST":
+        form = Forms_review(request.POST)
+        if form.is_valid():
+            Reseña.objects.create(
+                name = form.cleaned_data["name"],
+                puntaje = form.cleaned_data["puntaje"],
+                body = form.cleaned_data["body"],
+                film = form.cleaned_data["film"]
+            )
+        return redirect(list_review)
+
+    elif request.method == "GET":
+        forms = Forms_review()
+        context = {"forms":forms}
+        return render (request, "products/new_review.html", context=context)

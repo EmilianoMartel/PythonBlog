@@ -22,6 +22,8 @@ class Contenido(models.Model):
     modified_date = models.DateTimeField( auto_now=True)
     description = models.TextField(null=True)
     image_url = models.URLField(default="https://image.shutterstock.com/image-vector/photo-album-picture-collection-line-260nw-256926565.jpg")
+    def __str__(self):
+        return self.name + ' - ' + self.get_category_display()
 
 class User(models.Model): #La idea es agregarle usuarios y que puedan marcar productos como favoritos dentro del listado de productos y en una URL específica puedan ver esa lista
     name = models.CharField(max_length=50)
@@ -37,12 +39,20 @@ class Streaming: #Lo doy de alta como clase para poder filtrar contenido en base
 
 class Reseña(models.Model):
     name = models.CharField(max_length=40)
-    description = models.CharField(max_length=200)
-    film = models.ManyToManyField(Contenido)
-    categorias = [('P','Película'), ('S', 'Serie'), ('C', 'Corto')]
-    category = models.CharField(max_length=1,choices=categorias)
+    #description = models.CharField(max_length=200)
+    #film = models.ManyToManyField(Contenido)
+    film = models.ForeignKey(
+        'Contenido',
+        on_delete=models.CASCADE,
+    )
+    #categorias = [('P','Película'), ('S', 'Serie'), ('C', 'Corto')]
+    #category = models.CharField(max_length=1,choices=categorias)
     body = models.TextField(null=True)
     puntaje = models.FloatField()
+    def __str__(self):
+        return self.name + ' - ' + self.film  
+
+
 """    
 class Favorito(models.Model):
     user_id = IntegerField

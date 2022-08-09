@@ -1,5 +1,5 @@
 from django.contrib import admin
-from products.models import Producto, User, Contenido
+from products.models import Producto, User, Contenido, Reseña
 
 # Register your models here.
 @admin.register(Producto)
@@ -31,4 +31,13 @@ class Contenido_admin(admin.ModelAdmin):
     ,'created_date'
     ,'description'
     ,'image_url'
+    ]
+
+    
+@admin.register(Reseña)
+class Contenido_admin(admin.ModelAdmin):
+    list_display = [
+    'name'
+    ,'puntaje'
+    ,'body'
     ]

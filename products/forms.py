@@ -1,4 +1,6 @@
+from turtle import textinput
 from django import forms
+from products.models import Contenido
 
 class Forms_contenido(forms.Form):
     name = forms.CharField(max_length=50)
@@ -11,3 +13,9 @@ class Forms_contenido(forms.Form):
     #modified_date = forms.DateTimeField()
     description = forms.CharField()
     image_url = forms.URLField()
+
+class Forms_review(forms.Form):
+    name = forms.CharField(max_length=40)
+    film = forms.ModelChoiceField(queryset=Contenido.objects.all())
+    puntaje = forms.FloatField() 
+    body = forms.CharField(widget=forms.Textarea)
