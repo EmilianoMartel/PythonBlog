@@ -1,6 +1,6 @@
 from turtle import textinput
 from django import forms
-from products.models import Producto, Contenido, Reseña
+from products.models import Contenido, Reseña, Platform
 
 
 class Forms_contenido(forms.Form):
@@ -14,10 +14,14 @@ class Forms_contenido(forms.Form):
     description = forms.CharField()
     image_url = forms.URLField()
 
-
 class Forms_review(forms.Form):
     name = forms.CharField(max_length=40)
     film = forms.ModelChoiceField(queryset=Contenido.objects.all())
     puntaje = forms.FloatField() 
     body = forms.CharField(widget=forms.Textarea)
 
+class Forms_platform(forms.Form):
+    name = forms.CharField(max_length=50)
+    description = forms.CharField()
+    image_url = forms.URLField(required=False) #CAMBIAR POR IMÁGENES EN SERVER
+    contains = forms.ModelMultipleChoiceField(queryset=Contenido.objects.all(),widget=forms.CheckboxSelectMultiple, required=False, label='Que películas, series y cortos tiene disponibles')

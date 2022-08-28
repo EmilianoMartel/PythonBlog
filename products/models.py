@@ -1,17 +1,6 @@
-from pyexpat import model
-from unicodedata import category
 from django.db import models
 
 # Create your models here.
-class Producto(models.Model): #REEMPLAZAR POR CONTENIDO
-    name = models.CharField(max_length=50)
-    price = models.FloatField()
-    created_date = models.DateField(auto_now_add=True)
-    modified_date = models.DateTimeField( auto_now=True)
-    description = models.TextField(null=True)
-    active =  models.BooleanField(default=True)
-    image_url = models.URLField(default="https://image.shutterstock.com/image-vector/photo-album-picture-collection-line-260nw-256926565.jpg")
-
 class Contenido(models.Model):
     name = models.CharField(max_length=50)
     categorias = [('P','Película'), ('S', 'Serie'), ('C', 'Corto')]
@@ -31,22 +20,20 @@ class User(models.Model): #La idea es agregarle usuarios y que puedan marcar pro
     mail = models.EmailField()
     fav = models.ManyToManyField(Contenido) #favoritos
 
-class Streaming: #Lo doy de alta como clase para poder filtrar contenido en base a plataformas de manera fácil
+class Platform(models.Model): #Lo doy de alta como clase para poder filtrar contenido en base a plataformas de manera fácil
     name = models.CharField(max_length=50) 
     description = models.TextField(null=True)
     image_url = models.URLField(default="https://image.shutterstock.com/image-vector/photo-album-picture-collection-line-260nw-256926565.jpg")
-    contains = models.ManyToManyField(Contenido) #favoritos
+    contains = models.ManyToManyField(Contenido, blank=True) #peliculas que están en cada plataforma
+    def __str__(self):
+        return self.name
 
 class Reseña(models.Model):
     name = models.CharField(max_length=40)
-    #description = models.CharField(max_length=200)
-    #film = models.ManyToManyField(Contenido)
     film = models.ForeignKey(
         'Contenido',
         on_delete=models.CASCADE,
     )
-    #categorias = [('P','Película'), ('S', 'Serie'), ('C', 'Corto')]
-    #category = models.CharField(max_length=1,choices=categorias)
     body = models.TextField(null=True)
     puntaje = models.FloatField()
     def __str__(self):
