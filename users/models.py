@@ -5,7 +5,7 @@ from products.models import Contenido
 
 
 class User_profile(models.Model):
-    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='profile', primary_key=True)
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='profile')
     phone = models.CharField(max_length=20, blank=True) 
     about = models.CharField(max_length=250, blank=True)
     image = models.ImageField(upload_to='profile_image/',null=True, blank=True)
