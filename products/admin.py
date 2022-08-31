@@ -1,14 +1,7 @@
 from django.contrib import admin
-from products.models import  User, Contenido, Reseña
+from products.models import  Contenido, Reseña, Platform
 
 # Register your models here.
-@admin.register(User)
-class User_admin(admin.ModelAdmin):
-    list_display = [
-    'name'
-    ,'mail'
-    ]
-
 @admin.register(Contenido)
 class Contenido_admin(admin.ModelAdmin):
     list_display = [
@@ -21,11 +14,18 @@ class Contenido_admin(admin.ModelAdmin):
     ,'image_url'
     ]
 
-    
 @admin.register(Reseña)
 class Contenido_admin(admin.ModelAdmin):
     list_display = [
     'name'
     ,'puntaje'
     ,'body'
+    ]
+
+@admin.register(Platform)
+class Platform_admin(admin.ModelAdmin):
+    list_display = [
+    'name'
+    ,'description'
+    ,'image_url'
     ]

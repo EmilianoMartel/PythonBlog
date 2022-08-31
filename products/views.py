@@ -57,8 +57,8 @@ def new_review(request):
         forms = Forms_review()
         context = {"forms":forms}
         return render (request, "products/new_review.html", context=context)
-"""
-def new_platform(request):
+
+"""def new_platform(request): #No guarda la data de la relación y tira diversos errores. Uso la vista basada en clase que funciona perfecto.
     if request.method == "POST":
         form = Forms_platform(request.POST)
         if form.is_valid():
@@ -82,10 +82,11 @@ def new_platform(request):
         context = {"forms":forms}
         return render(request, "products/new_platform.html", context=context)
 """
+
 class New_platform(CreateView):
     model = Platform
     template_name = 'products/new_platform.html'
-    form_class = Forms_platform
+    #form_class = Forms_platform
     fields = '__all__'
     success_url = '/products/list-platforms/'
 
@@ -101,3 +102,5 @@ def list_platforms(request):
     }
     return render(request, "products/platforms_list_card.html", context=context)
 
+def index(request):
+    return render(request, 'index.html')

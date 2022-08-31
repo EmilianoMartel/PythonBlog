@@ -12,11 +12,17 @@
         <div class="col mb-5">
           
           <div class="card h-100">
-            <img style="height:450px;max-width:300px;width: expression(this.width > 300 ? 300: true);" id="img_DocPreview" src= {{platform.image_url}} class="card-img-top" alt="...">
+            <img style="height:350px;max-width:350px;width: expression(this.width > 300 ? 300: true);" id="img_DocPreview" src= {{platform.image_url}} class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{platform.name}}</h5> 
+              <h3 class="card-title">{{platform.name}}</h3> 
               <p class="card-text">{{platform.description}}</p>
-              <p class="card-text"></p>{{platform.contains}}</p>
+              <a class="btn btn-danger" href="/products/delete-platform/{{platform.id}}/">Borrar</a>
+              <li class="list-group-item list-group-item-dark">Contenidos</li> 
+              <ul class="list-group">
+                {% for c in platform.contains.all %}
+                <li class="list-group-item"> {{c.name}}</li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
           

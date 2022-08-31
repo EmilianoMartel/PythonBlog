@@ -11,6 +11,6 @@ urlpatterns = [
     path('new-review/', new_review, name='new_review'),
     path('new-platform/', New_platform.as_view(), name='new_platform'),
     path('list-platforms/', list_platforms, name='list_platforms'),
-    path('new-platform/', Delete_platform.as_view(), name='delete_platform'),
+    path('delete-platform/<int:pk>/', Delete_platform.as_view(), name='delete_platform'),
     path('users/', include('users.urls')),
 ]

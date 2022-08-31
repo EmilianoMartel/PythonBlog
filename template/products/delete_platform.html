@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Borrar Plataforma
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h2>Confirmar que va a borrar la plataforma: {{object.name}}</h2>
+
+<form action="" method="POST">
+{% csrf_token %}
+<p><input type="submit" value="Enviar"></p>
+</form>
+
+</div>
+{% if message %}
+<div class="alert alert-success" role="alert">
+    {{message}}
+</div>
+{% endif %}
+</div>
+
+
+{% endblock %}
