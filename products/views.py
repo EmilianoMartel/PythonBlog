@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from products.models import Contenido, Reseña, Platform
 from products.forms import Forms_contenido, Forms_review, Forms_platform
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.urls import reverse
 
 def list_content(request):
     content = Contenido.objects.all()
@@ -41,6 +42,13 @@ def search_content(request):
     context = {'products':products}
     return render(request, 'products/search_content.html', context=context)
 
+def delete_content(DeleteView):
+    model = Contenido
+    templete_name = "products/delete_content.html"
+
+    def get_success_url(self):
+        return reverse("list_content")
+
 def new_review(request):
     if request.method == "POST":
         form = Forms_review(request.POST)
@@ -57,6 +65,13 @@ def new_review(request):
         forms = Forms_review()
         context = {"forms":forms}
         return render (request, "products/new_review.html", context=context)
+
+def delete_review(DeleteView):
+    model = Reseña
+    template_name = "products/delete_review.html"
+
+    def get_success_url(self):
+        return reverse("profucts/list_review.html")
 
 """def new_platform(request): #No guarda la data de la relación y tira diversos errores. Uso la vista basada en clase que funciona perfecto.
     if request.method == "POST":

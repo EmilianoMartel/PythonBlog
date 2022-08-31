@@ -1,5 +1,5 @@
 from django.urls import path, include
-from products.views import New_platform, list_content, new_content, list_review, search_content, new_review, list_platforms, Delete_platform
+from products.views import New_platform, delete_content, delete_review, list_content, new_content, list_review, search_content, new_review, list_platforms, Delete_platform
 
 
 urlpatterns = [
@@ -13,4 +13,6 @@ urlpatterns = [
     path('list-platforms/', list_platforms, name='list_platforms'),
     path('delete-platform/<int:pk>/', Delete_platform.as_view(), name='delete_platform'),
     path('users/', include('users.urls')),
+    path("delete_content/", delete_content, name="delete_content"),
+    path("delete_review/", delete_review, name="delete_review"),
 ]

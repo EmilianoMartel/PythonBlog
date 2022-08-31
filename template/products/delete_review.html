@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Borrar Reseña
+{% endblock %}
+
+{% block contenido %}
+
+
+    <h3 style="color: red">Estas por eliminar la reseña {{object.name}}, estas seguro?</h3>
+
+    <form method = "POST">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Eliminar</button>
+    </form>
+
+
+{% endblock %}
