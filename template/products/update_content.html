@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Modificar {{object.name}}
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>Confirmar que va a modificar el contenido: {{object.name}}</h1>
+<h5>{{object.name}}</h5>
+<h5>{{object.category}}</h5>
+<p>{{object.score}}</p>
+<p>{{object.description}}</p>
+<p>{{object.image_url}}</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        
+        {{form.as_table}}
+
+    </table>
+    <p><input type="submit" value="Enviar"></p>
+
+</form>
+
+{% endblock %}
