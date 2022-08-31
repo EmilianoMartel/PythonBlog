@@ -5,17 +5,33 @@
 {% endblock %}
 
 {% block contenido_que_cambia %}
-<h1>{{object.user}}</h1>
-<h5>{{object.phone}}</h5>
-<p>{{object.about}}</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Perfil de {{object.user}}</h1>
+      <img height="200px" src="{{object.image.url}}" />
+        <ul class="list-group">
+            <li class="list-group-item">Teléfono: {{object.phone}}</li>
+            <li class="list-group-item">Sobre mí: {{object.about}}</li>
 
+        </ul>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <a class="btn btn-primary" href="/users/update-profile/{{object.user.id}}/">Editar perfil</a>
+            <a class="btn btn-danger" href="/users/delete-profile/{{object.user.id}}/">Borrar perfil</a>
+            
+            <div class="container">
+                <h1 class="display-4">Favoritos</h1>
+                <ul class="list-group">
+                    {% for c in user_profile.fav.all %}
+                    <li class="list-group-item"> {{c.name}}</li>
+                    {% endfor %}
+        
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <a class="btn btn-primary" href="/users/update-profile/{{object.user.id}}/">Editar perfil</a>
-    <a class="btn btn-danger" href="/users/delete-profile/{{object.user.id}}/">Borrar perfil</a>
-
-</form>
 
 {% if errors %}
 <div class="alert alert-success" role="alert">

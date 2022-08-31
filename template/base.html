@@ -17,6 +17,7 @@
 
   </head>
   <body>
+    <div class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/">CineFans</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +26,6 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" href="/products/list-content/">Contenidos <span class="sr-only">(current)</span></a>
-          <a class="nav-link disabled" href="/products/favorites/">Favoritos</a>
           <a class="nav-link" href="/products/new-content/">Alta de contenidos</a>
           <a class="nav-link active" href="/products/list-review/">Reseñas</a>
           <a class="nav-link" href="/products/new-review/">Alta de Reseñas</a>
@@ -34,10 +34,9 @@
           <a class="nav-link" href="/products/delete-platform/">Borrar Plataforma</a>
           <form class="form-inline">
             {% if request.user.is_authenticated %}
-              <img height="40px" src="{{request.user.user_profile.image}}" />
               <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
-              <a class="btn btn-info" type="button float-right" href="/users/create-profile/">Crear perfil</a>
-            
+              <!-- <a class="btn btn-info" type="button float-right" href="/users/create-profile/">Crear perfil</a> -->
+              <img height="40px" src="{{ request.user.profile.image.url }}" />
             <a type="button" class="btn btn-warning float-right" href="/users/logout/">Logout</a>
             {% else %}
                 <a class="btn btn-success" type="button float-right" href="/users/login/">Login</a>
@@ -47,7 +46,7 @@
         </div>
       </div>
     </nav>
-
+    </div>
     {% block contenido_que_cambia %}
         bloque por defecto
     {% endblock %}

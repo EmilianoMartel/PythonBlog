@@ -60,7 +60,6 @@ def new_review(request):
                 film = form.cleaned_data["film"]
             )
         return redirect(list_review)
-
     elif request.method == "GET":
         forms = Forms_review()
         context = {"forms":forms}
@@ -70,31 +69,6 @@ class Delete_review(DeleteView):
     model = Reseña
     template_name = 'products/delete_review.html'
     success_url = '/products/list-review/'
-
-"""def new_platform(request): #No guarda la data de la relación y tira diversos errores. Uso la vista basada en clase que funciona perfecto.
-    if request.method == "POST":
-        form = Forms_platform(request.POST)
-        if form.is_valid():
-            Platform.objects.create(
-                name = form.cleaned_data["name"],
-                description = form.cleaned_data["description"],
-                image_url = form.cleaned_data["image_url"],
-            )
-            #selected_categories = form.cleaned_data.get('category') #returns list of all selected categories e.g. ['Sports','Adventure']
-            selected_content = form.cleaned_data["contains"]
-            print(selected_content)
-            for title in selected_content:
-                print(title.id)
-                relacion = Contenido.objects.get(id=title.id) #get object by title i.e I declared unique for title under Category model
-                Platform.contains.add(relacion) #now add each category object to the saved form object
-            context = { 'message' : 'creación exitosa'}
-        return render(request, "products/new_platform.html", context=context)
-
-    elif request.method == "GET":
-        forms = Forms_platform()
-        context = {"forms":forms}
-        return render(request, "products/new_platform.html", context=context)
-"""
 
 class New_platform(CreateView):
     model = Platform
@@ -115,5 +89,5 @@ def list_platforms(request):
     }
     return render(request, "products/platforms_list_card.html", context=context)
 
-def index(request): #Lo que vimos en clase y las diapositivas está incompleto o mal
+def index(request): #Lo que vimos en clase y las diapositivas está incompleto o mal - no se muestra la imagen
     return render(request, 'index.html')

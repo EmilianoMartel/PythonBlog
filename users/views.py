@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
-from users.models import User_profile
+
 
 # Create your views here.
 def login_request(request):
@@ -80,9 +80,9 @@ class Create_profile(LoginRequiredMixin,CreateView): #Reemplazada por la señal 
 
 class Update_profile(LoginRequiredMixin,UpdateView):
     model = User_profile
-    fields = '__all__'
+    fields = ['phone','about','image','fav'] #sacar user
     template_name = 'users/update_profile.html'
-    success_url = 'users/profile.html'
+    success_url = '/'
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
