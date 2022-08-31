@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Modificar {{object.name}}
+{% endblock %}
+
+{% block contenido_que_cambia %}
+<h1>Confirmar que va a modificar el reseña: {{object.name}}</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        
+        {{form.as_table}}
+
+    </table>
+    <p><input type="submit" value="Enviar"></p>
+
+</form>
+
+{% endblock %}
