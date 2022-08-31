@@ -8,6 +8,11 @@ from users.models import User_profile
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from users.models import User_profile
+
 # Create your views here.
 def login_request(request):
     if request.method == 'POST':
@@ -50,7 +55,7 @@ def show_profile(request): #Reemplazada por la clase
     if request.user.is_authenticated:
         try:
             u = User_profile.objects.get(id=request.user.id)
-            print(u, type(u))
+            print('user profile queryset:',u, type(u))
             context = {'user': u}
             return render(request, 'users/profile.html', context)
         except:
@@ -66,13 +71,25 @@ class Show_profile(LoginRequiredMixin,DetailView):
     model = User_profile
     template_name = 'users/profile.html'
 
-class Create_profile(LoginRequiredMixin,CreateView):
+class Create_profile(LoginRequiredMixin,CreateView): #Reemplazada por la señal con el decorador @receiver. Se activa cuando se ejecuta el método user.save() que está en el formulario automático. Nos ahorra tener que revisar como hacer para que el usuario se autocomplete.
     model = User_profile
     template_name = 'users/create_profile.html'
     fields = '__all__'
-    success_url = 'users/profile.html'
+    success_url = 'users/show-profile/'+str(User.id)+'/'
 
 class Update_profile(LoginRequiredMixin,UpdateView):
     model = User_profile
     fields = '__all__'
+    template_name = 'users/update_profile.html'
     success_url = 'users/profile.html'
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        User_profile.objects.create(user=instance)
+
+class Delete_profile(LoginRequiredMixin,DeleteView): #Reemplazada por la señal con el decorador @receiver. Se activa cuando se ejecuta el método user.save() que está en el formulario automático. Nos ahorra tener que revisar como hacer para que el usuario se autocomplete.
+    model = User_profile
+    template_name = 'users/delete_profile.html'
+    #fields = '__all__'
+    success_url = '/'

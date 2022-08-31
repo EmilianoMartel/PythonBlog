@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-Perfil de {{user.username}}
+    Borrar Perfil de {{user.username}}
 {% endblock %}
 
 {% block contenido_que_cambia %}
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="" method="POST">
     {% csrf_token %}
-    <table>
-
-        {{form.as_table}}
-
-    </table>
+        ¿Estás seguro que querés borrar el perfil de {{object}}? 
     <p><input type="submit" value="Enviar"></p>
 
 </form>

@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Register
+    Perfil de {{object.user}}
 {% endblock %}
 
 {% block contenido_que_cambia %}
+<h1>{{object.user}}</h1>
+<h5>{{object.phone}}</h5>
+<p>{{object.about}}</p>
 
-<form action="" method="POST">
-{% csrf_token %}
-
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
     <table>
 
         {{form.as_table}}
 
     </table>
-
-    <p><input type="submit" value="Registrate"></p>
-
-    </form>
+    <p><input type="submit" value="Enviar"></p>
 
 {% if errors %}
 <div class="alert alert-success" role="alert">

@@ -5,20 +5,22 @@
 {% endblock %}
 
 {% block contenido_que_cambia %}
-<h1>{{object.username}}</h1>
+<h1>{{object.user}}</h1>
 <h5>{{object.phone}}</h5>
 <p>{{object.about}}</p>
 
 
 <form action="" method="POST">
     {% csrf_token %}
-    <table>
-        
-        {{form.as_table}}
-
-    </table>
-    <p><input type="submit" value="Enviar"></p>
+    <a class="btn btn-primary" href="/users/update-profile/{{object.user.id}}/">Editar perfil</a>
+    <a class="btn btn-danger" href="/users/delete-profile/{{object.user.id}}/">Borrar perfil</a>
 
 </form>
+
+{% if errors %}
+<div class="alert alert-success" role="alert">
+    {{errors}}
+</div>
+{% endif %}
 
 {% endblock %}

@@ -34,7 +34,7 @@
           <a class="nav-link" href="/products/delete-platform/">Borrar Plataforma</a>
           <form class="form-inline">
             {% if request.user.is_authenticated %}
-              {% if url %}
+              {% if user_p or request.user.user_profile %}
               <img height="40px" src="{{url}}" />
               <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
               {% else %}
