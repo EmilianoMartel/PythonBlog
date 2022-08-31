@@ -18,7 +18,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">CineFans</a>
+      <a class="navbar-brand" href="/">CineFans</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,7 +34,13 @@
           <a class="nav-link" href="/products/delete-platform/">Borrar Plataforma</a>
           <form class="form-inline">
             {% if request.user.is_authenticated %}
-            <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
+              {% if url %}
+              <img height="40px" src="{{url}}" />
+              <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
+              {% else %}
+              <a class="btn btn-info" type="button float-right" href="/users/create-profile/">Crear perfil</a>
+              {% endif %}
+            
             <a type="button" class="btn btn-warning float-right" href="/users/logout/">Logout</a>
             {% else %}
                 <a class="btn btn-success" type="button float-right" href="/users/login/">Login</a>

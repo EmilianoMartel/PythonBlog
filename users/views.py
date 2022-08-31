@@ -46,7 +46,7 @@ def register(request):
         form = User_registration_form()
         return render(request, 'users/register.html', {'form': form})
 
-def show_profile(request):
+def show_profile(request): #Reemplazada por la clase
     if request.user.is_authenticated:
         try:
             u = User_profile.objects.get(id=request.user.id)
@@ -56,7 +56,7 @@ def show_profile(request):
         except:
             return redirect(create_profile)
 
-def create_profile(request):
+def create_profile(request): #Reemplazada por la clase
     if request.user.is_authenticated:
         u = User_profile.objects.get(id=request.user.id)
         context = {'user': u}

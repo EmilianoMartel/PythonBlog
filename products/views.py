@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from products.models import Contenido, Reseña, Platform
 from products.forms import Forms_contenido, Forms_review, Forms_platform
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from users.models import User_profile
 
 def list_content(request):
     content = Contenido.objects.all()
@@ -102,5 +103,11 @@ def list_platforms(request):
     }
     return render(request, "products/platforms_list_card.html", context=context)
 
-def index(request):
-    return render(request, 'index.html')
+def index(request): #Lo que vimos en clase y las diapositivas está incompleto o mal
+    imagen = User_profile.objects.filter(user=request.user.id)
+    context = {'':''}
+    try:
+        context = {"url":imagen[0].image.url}
+    except:
+        print(imagen)
+    return render(request, 'index.html', context)
