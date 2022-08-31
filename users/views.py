@@ -53,6 +53,7 @@ def register(request):
 
 def show_profile(request): #Reemplazada por la clase
     if request.user.is_authenticated:
+        print(User.objects.get(user_id=request.user.id))
         try:
             u = User_profile.objects.get(id=request.user.id)
             print('user profile queryset:',u, type(u))
@@ -74,8 +75,8 @@ class Show_profile(LoginRequiredMixin,DetailView):
 class Create_profile(LoginRequiredMixin,CreateView): #Reemplazada por la señal con el decorador @receiver. Se activa cuando se ejecuta el método user.save() que está en el formulario automático. Nos ahorra tener que revisar como hacer para que el usuario se autocomplete.
     model = User_profile
     template_name = 'users/create_profile.html'
-    fields = '__all__'
-    success_url = 'users/show-profile/'+str(User.id)+'/'
+    fields = '__all__' #['phone','about','image','fav'] Da error NOT NULL constraint failed: users_user_profile.user_id
+    success_url = 'users/profile.html'
 
 class Update_profile(LoginRequiredMixin,UpdateView):
     model = User_profile

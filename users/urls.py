@@ -7,7 +7,7 @@ urlpatterns = [
     path('login/', login_request, name='login'),
     path('register/', register, name='register'),
     path('logout/', LogoutView.as_view(template_name = 'users/logout.html'), name='logout'),
-    path('show-profile/<int:user_id>/', Show_profile.as_view(), name='Show_profile'),
+    path('show-profile/<int:pk>/', Show_profile.as_view(), name='Show_profile'),
     path('create-profile/', Create_profile.as_view(), name='Create_profile'),
     path('update-profile/<int:pk>/', Update_profile.as_view(), name='Update_profile'),
     path('show-profile2/', show_profile, name='show_profile'),

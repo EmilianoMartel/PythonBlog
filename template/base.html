@@ -34,12 +34,9 @@
           <a class="nav-link" href="/products/delete-platform/">Borrar Plataforma</a>
           <form class="form-inline">
             {% if request.user.is_authenticated %}
-              {% if user_p or request.user.user_profile %}
-              <img height="40px" src="{{url}}" />
+              <img height="40px" src="{{request.user.user_profile.image}}" />
               <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
-              {% else %}
               <a class="btn btn-info" type="button float-right" href="/users/create-profile/">Crear perfil</a>
-              {% endif %}
             
             <a type="button" class="btn btn-warning float-right" href="/users/logout/">Logout</a>
             {% else %}

@@ -47,7 +47,6 @@ def search_content(request):
 def delete_content(DeleteView):
     model = Contenido
     templete_name = "products/delete_content.html"
-
     def get_success_url(self):
         return reverse("list_content")
 
@@ -120,18 +119,4 @@ def list_platforms(request):
     return render(request, "products/platforms_list_card.html", context=context)
 
 def index(request): #Lo que vimos en clase y las diapositivas está incompleto o mal
-    """
-    imagen = User_profile.objects.filter(user=request.user.id)
-    print(imagen)
-    imagen = imagen.image
-    print(imagen)
-    context = {'':''}
-    try:
-        context = {"url":imagen}
-    except:
-        print('error:',imagen)
-    """
-    u = User_profile.objects.get(id=request.user.id)
-    context = {'user_p':u}
-    print('user:',u)
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
