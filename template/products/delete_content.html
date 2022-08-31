@@ -4,15 +4,22 @@
 Borrar Contenido
 {% endblock %}
 
-{% block contenido %}
+{% block contenido_que_cambia %}
 
+<h2>Confirmar que va a borrar el contenido: {{object.name}}</h2>
 
-    <h3 style="color: red">Estas por eliminar el contenido {{object.name}}, estas seguro?</h3>
+<form action="" method="POST">
+{% csrf_token %}
+<p><input type="submit" value="Enviar"></p>
+</form>
 
-    <form method = "POST">
-        {% csrf_token %}
-        <button class="btn btn-danger" type="submit">Eliminar</button>
-    </form>
+</div>
+{% if message %}
+<div class="alert alert-success" role="alert">
+    {{message}}
+</div>
+{% endif %}
+</div>
 
 
 {% endblock %}

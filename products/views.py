@@ -44,12 +44,10 @@ def search_content(request):
     context = {'products':products}
     return render(request, 'products/search_content.html', context=context)
 
-def delete_content(DeleteView):
+class Delete_content(DeleteView):
     model = Contenido
-    templete_name = "products/delete_content.html"
-
-    def get_success_url(self):
-        return reverse("list_content")
+    template_name = 'products/delete_content.html'
+    success_url = '/products/list-content/'
 
 def new_review(request):
     if request.method == "POST":
@@ -68,12 +66,10 @@ def new_review(request):
         context = {"forms":forms}
         return render (request, "products/new_review.html", context=context)
 
-def delete_review(DeleteView):
+class Delete_review(DeleteView):
     model = Reseña
-    template_name = "products/delete_review.html"
-
-    def get_success_url(self):
-        return reverse("profucts/list_review.html")
+    template_name = 'products/delete_review.html'
+    success_url = '/products/list-review/'
 
 """def new_platform(request): #No guarda la data de la relación y tira diversos errores. Uso la vista basada en clase que funciona perfecto.
     if request.method == "POST":
