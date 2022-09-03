@@ -41,7 +41,7 @@ def new_content(request):
 def search_content(request):
     search = request.GET['search']
     content = Contenido.objects.filter(name__icontains=search)
-    context = {'content':content}
+    context = {'contents':content}
     return render(request, 'products/search_content.html', context=context)
 
 class Delete_content(DeleteView):
