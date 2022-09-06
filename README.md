@@ -1,6 +1,6 @@
 # PythonBlog
 
-Cinefans es una web creada en Django para el proyecto final del curso de Python de Coderhouse. Se puede acceder a ella [aquí] (http://anselminie.pythonanywhere.com/)
+Cinefans es una web creada en Django para el proyecto final del curso de Python de Coderhouse. Se puede acceder a ella [aquí](http://anselminie.pythonanywhere.com/)
 
 Está inspirada en Letterboxd. La idea de la web es cargar series, películas o cortos. A esos contenidos se les pueden generar opiniones y asociarlos a plataformas de streaming.
 De esta manera podríamos buscar una película y ver que críticas tiene y en que plataforma está disponible.
@@ -21,4 +21,4 @@ Este es el módulo de contenidos (pero comenzamos haciendo un ecommerce). Aquí 
 - Las reseñas tienen una relación one to many con los contenidos para que los usuarios carguen sus calificaciones y (esto no fue implementado) se pueda mostrar para cada película el puntaje que obtuvo de usuarios y contrastarlo con el de la base (que sería el de IMDB). Tampoco tiene implementado un registro de que usuario la cargó y un límite de 1 reseña por contenido por usuario, para que no puedan spammear.
 
 ### Créditos
-El trabajo fue realizado por Emiliano Anselmini y Emiliano Martel sin un criterio de repartir funciones muy estricto, ambos hicimos [de todo] (https://github.com/Coquito38/PythonBlog/graphs/contributors)
+El trabajo fue realizado por Emiliano Anselmini y Emiliano Martel sin un criterio de repartir funciones muy estricto, ambos hicimos [de todo](https://github.com/Coquito38/PythonBlog/graphs/contributors)
