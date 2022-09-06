@@ -4,7 +4,7 @@ from products.forms import Forms_contenido, Forms_review, Forms_platform
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from users.models import User_profile
 from django.urls import reverse
-
+from django.contrib.auth.decorators import login_required
 
 def list_content(request):
     content = Contenido.objects.all()
@@ -20,6 +20,7 @@ def list_review(request):
     }
     return render(request, "products/review_list_card.html", context=context)
 
+@login_required
 def new_content(request):
     if request.method == "POST":
         form = Forms_contenido(request.POST)
@@ -44,11 +45,13 @@ def search_content(request):
     context = {'products':products}
     return render(request, 'products/search_content.html', context=context)
 
+@login_required
 class Delete_content(DeleteView):
     model = Contenido
     template_name = 'products/delete_content.html'
     success_url = '/products/list-content/'
 
+@login_required
 def new_review(request):
     if request.method == "POST":
         form = Forms_review(request.POST)
@@ -65,11 +68,13 @@ def new_review(request):
         context = {"forms":forms}
         return render (request, "products/new_review.html", context=context)
 
+@login_required
 class Delete_review(DeleteView):
     model = Reseña
     template_name = 'products/delete_review.html'
     success_url = '/products/list-review/'
 
+@login_required
 class New_platform(CreateView):
     model = Platform
     template_name = 'products/new_platform.html'
@@ -77,6 +82,7 @@ class New_platform(CreateView):
     fields = '__all__'
     success_url = '/products/list-platforms/'
 
+@login_required
 class Delete_platform(DeleteView):
     model = Platform
     template_name = 'products/delete_platform.html'

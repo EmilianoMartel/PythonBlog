@@ -26,12 +26,18 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" href="/products/list-content/">Contenidos <span class="sr-only">(current)</span></a>
+          {% if request.user.is_authenticated %}
           <a class="nav-link" href="/products/new-content/">Alta de contenidos</a>
+          {% endif %}
           <a class="nav-link active" href="/products/list-review/">Reseñas</a>
+          {% if request.user.is_authenticated %}
           <a class="nav-link" href="/products/new-review/">Alta de Reseñas</a>
+          {% endif %}
           <a class="nav-link active" href="/products/list-platforms/">Plataformas</a>
+          {% if request.user.is_authenticated %}
           <a class="nav-link" href="/products/new-platform/">Alta de Plataformas</a>
           <a class="nav-link" href="/products/delete-platform/">Borrar Plataforma</a>
+          {% endif %}
           <form class="form-inline">
             {% if request.user.is_authenticated %}
               <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
