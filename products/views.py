@@ -41,8 +41,8 @@ def new_content(request):
 
 def search_content(request):
     search = request.GET['search']
-    products = Contenido.objects.filter(name__icontains=search)
-    context = {'products':products}
+    content = Contenido.objects.filter(name__icontains=search)
+    context = {'contents':content}
     return render(request, 'products/search_content.html', context=context)
 
 @login_required

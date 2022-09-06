@@ -1,21 +1,29 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Busqueda productos
+    Busqueda de Contenidos
 {% endblock %}
 
 {% block contenido_que_cambia %}
 
-    {% for product in products %}
-    <div class="card" style="width: 18rem;">
-        <img src="https://i0.wp.com/edtechreviews.net/wp-content/uploads/2021/12/coderhouse_logo.png?resize=750%2C750&ssl=1" class="card-img-top">
-        <div class="card-body">
-            <h5 class="card-title">{{content.name}}</h5>
-            <p class="card-text">Precio: {{content.category}}</p>
-            <p class="card-text">Stock: {{content.description}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="row row-cols-1 row-cols-md-5"> <!-- cambiando el ultimo numero cambia la cantidad de columnas -->
+    {% for content in contents %}
+      <div class="col mb-5">
+        
+        <div class="card h-100">
+          <img style="height:450px;max-width:300px;" id="img_DocPreview" src= {{content.image_url}} class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{content.name}}</h5> 
+            <p class="card-text"><small class="text-muted">{{content.get_category_display}}</small></p> <!-- el get_CAMPO_display trae el valor legible de la tupla, el que se guarda en la base es solo la letra -->
+            <p class="card-text">Calificación: {{content.score}}</p>
+            <p class="card-text">Calificación de usuarios: {{content.reseña.puntaje}}</p>
+            <p class="card-text">{{content.description}}</p>
+            <a class="btn btn-danger" href="/products/delete-content/{{content.id}}/">Borrar</a>
+          </div>
         </div>
+        
+      </div>
+    {% endfor %}  
     </div>
-    {% endfor %}
 
 {% endblock %}

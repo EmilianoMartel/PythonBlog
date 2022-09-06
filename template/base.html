@@ -37,25 +37,31 @@
           {% if request.user.is_authenticated %}
           <a class="nav-link" href="/products/new-platform/">Alta de Plataformas</a>
           <a class="nav-link" href="/products/delete-platform/">Borrar Plataforma</a>
-          {% endif %}
-          <form class="form-inline">
-            {% if request.user.is_authenticated %}
-              <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
-              <!-- <a class="btn btn-info" type="button float-right" href="/users/create-profile/">Crear perfil</a> -->
-              <img height="40px" src="{{ request.user.profile.image.url }}" />
-            <a type="button" class="btn btn-warning float-right" href="/users/logout/">Logout</a>
-            {% else %}
-                <a class="btn btn-success" type="button float-right" href="/users/login/">Login</a>
-                <a class="btn btn-info" type="button float-right" href="/users/register/">Register</a>
-            {% endif %}
-          </form>
+          
+          <div class="d-flex justify-content-end">
+            <form class="form-inline my-2 my-lg-0" action="/products/search-content/" method="GET">
+              <input class="form-control mr-sm-2" type="search" placeholder="Buscar contenidos" aria-label="search" name = 'search'>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Buscar</button>
+            </form>
+            </div>
+            
         </div>
       </div>
+      {% if request.user.is_authenticated %}
+        <a class="btn btn-info" type="button float-right" href="/users/show-profile/{{user.id}}/">Ver Perfil</a>
+        <!-- <a class="btn btn-info" type="button float-right" href="/users/create-profile/">Crear perfil</a> -->
+        <img height="40px" src="{{ request.user.profile.image.url }}" />
+        <a type="button" class="btn btn-warning float-right" href="/users/logout/">Logout</a>
+      {% else %}
+          <a class="btn btn-success" type="button float-right" href="/users/login/">Login</a>
+          <a class="btn btn-info" type="button float-right" href="/users/register/">Register</a>
+      {% endif %}
     </nav>
     </div>
     {% block contenido_que_cambia %}
         bloque por defecto
     {% endblock %}
 
+<!--     <footer class="mt-auto">FOOTER</footer> -->
   </body>
 </html>
