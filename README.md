@@ -1,6 +1,7 @@
 # PythonBlog
 
 Cinefans es una web creada en Django para el proyecto final del curso de Python de Coderhouse. Se puede acceder a ella [aquí](http://anselminie.pythonanywhere.com/)
+> NOTA: esta versión tiene algunas mejoras ligeras que surgieron del testing de usuarios que se dió posterior a la versión publicada, como límites en las valoraciones que faltaban y el agregado de decoradores de login required para las class-based-views que agregué en urls.py
 
 Está inspirada en Letterboxd. La idea de la web es cargar series, películas o cortos. A esos contenidos se les pueden generar opiniones y asociarlos a plataformas de streaming.
 De esta manera podríamos buscar una película y ver que críticas tiene y en que plataforma está disponible.
@@ -16,7 +17,7 @@ La imagen de perfil se muestra en la NavBar si el user está logueado.
 
 ### Products
 Este es el módulo de contenidos (pero comenzamos haciendo un ecommerce). Aquí tenemos tres modelos: Contenidos, Plataformas de streaming y Reseñas.
-- Los contenidos son películas o series. Se clasifican con un choicefield y las imágenes no se guardan en un servidor sino que se invoca una URL externa. Esto es porque lo hicimos antes de ver como manejar imágenes y porque teníamos la idea de hacer una carga masiva de datos con un dataset de IMDB que fue scrappeada por falta de tiempo.
+- Los contenidos son películas o series. Se clasifican con un choicefield y las imágenes no se guardan en un servidor sino que se invoca una URL externa. Esto es porque lo hicimos antes de ver como manejar imágenes y porque teníamos la idea de hacer una carga masiva de datos con un dataset de IMDB que fue desechada por falta de tiempo.
 - Los servicios de streaming tienen una relación many to many con contenidos para poder cargarles cuales tienen en catálogo.
 - Las reseñas tienen una relación one to many con los contenidos para que los usuarios carguen sus calificaciones y (esto no fue implementado) se pueda mostrar para cada película el puntaje que obtuvo de usuarios y contrastarlo con el de la base (que sería el de IMDB). Tampoco tiene implementado un registro de que usuario la cargó y un límite de 1 reseña por contenido por usuario, para que no puedan spammear.
 
