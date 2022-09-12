@@ -58,6 +58,15 @@
       {% endif %}
     </nav>
     </div>
+
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+      {% endfor %}
+    {% endif %}    
+  
     {% block contenido_que_cambia %}
         bloque por defecto
     {% endblock %}
