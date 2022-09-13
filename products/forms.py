@@ -1,4 +1,3 @@
-from turtle import textinput
 from django import forms
 from products.models import Contenido, Reseña, Platform
 from django.forms import ModelForm

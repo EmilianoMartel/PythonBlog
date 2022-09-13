@@ -17,7 +17,9 @@
             <p class="card-text"><small class="text-muted">Calificación: {{review.puntaje}}</small></p>
             <p class="card-text"><small class="text-muted">Por: {{review.author}}</small></p>
             <p class="card-text">{{review.body}}</p>
+            {% if request.user.is_authenticated %}
             <a href="/products/delete-review/{{review.id}}/" class="btn btn-danger">Borrar</a>
+            {% endif %}
           </div>
         </div>
           

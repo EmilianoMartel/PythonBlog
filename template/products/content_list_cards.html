@@ -17,9 +17,11 @@
               <h5 class="card-title">{{content.name}}</h5> 
               <p class="card-text"><small class="text-muted">{{content.get_category_display}}</small></p> <!-- el get_CAMPO_display trae el valor legible de la tupla, el que se guarda en la base es solo la letra -->
               <p class="card-text">Calificación: {{content.score}}</p>
-              <p class="card-text">Calificación de usuarios: {{content.reseña.puntaje}}</p>
+              <p class="card-text">Calificación de usuarios: {{content.user_score}}</p>
               <p class="card-text">{{content.description}}</p>
+              {% if request.user.is_authenticated %}          
               <a class="btn btn-danger" href="/products/delete-content/{{content.id}}/">Borrar</a>
+              {% endif %}
             </div>
           </div>
           

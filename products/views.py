@@ -8,9 +8,11 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.db.models import Avg
 
 def list_content(request):
-    content = Contenido.objects.all()
+    content = Contenido.objects.annotate(user_score=Avg('reseña__puntaje')) #trae todos los objetos y les suma una clave más en el diccionario: user_score.
+    #content = Contenido.objects.all()
     context = {
         'contents':content
     }
@@ -102,5 +104,5 @@ def list_platforms(request):
     }
     return render(request, "products/platforms_list_card.html", context=context)
 
-def index(request): #Lo que vimos en clase y las diapositivas está incompleto o mal - no se muestra la imagen
+def index(request): 
     return render(request, 'index.html')
